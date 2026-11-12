@@ -1,0 +1,179 @@
+/* ==========================================================================
+   Ritam Consultancy - Interactive Button System
+   Audit & State Matrix: Default, Hover, Active, Focus, Disabled, Loading
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 9999px;
+  border: 1.5px solid transparent;
+  padding: 13px 26px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Accessible Keyboard Focus Ring */
+.btn:focus {
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2.5px solid var(--color-primary, #044439);
+  outline-offset: 3px;
+}
+
+/* Active Pressed State */
+.btn:active:not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Disabled State */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  pointer-events: none;
+}
+
+/* Loading State */
+.btn.is-loading {
+  cursor: wait !important;
+  opacity: 0.85;
+}
+
+.btn.is-loading .btn-icon-arrow {
+  display: none;
+}
+
+/* ==========================================================================
+   Button Variants
+   ========================================================================== */
+
+/* 1. Primary Button (Dark Teal / Forest Green) */
+.btn-primary {
+  background-color: var(--color-primary, #044439);
+  color: #FFFFFF;
+  border-color: var(--color-primary, #044439);
+  box-shadow: 0 8px 20px rgba(4, 68, 57, 0.22);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-light, #075f4f);
+  border-color: var(--color-primary-light, #075f4f);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(4, 68, 57, 0.3);
+}
+
+.btn-primary:active:not(:disabled) {
+  background-color: var(--color-primary-dark, #022a23);
+  box-shadow: 0 4px 12px rgba(4, 68, 57, 0.2);
+}
+
+/* 2. Secondary / Outline Button */
+.btn-secondary,
+.btn-outline {
+  background-color: #FFFFFF;
+  color: #1F2937;
+  border-color: #D1D5DB;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.btn-secondary:hover:not(:disabled),
+.btn-outline:hover:not(:disabled) {
+  border-color: var(--color-primary, #044439);
+  color: var(--color-primary, #044439);
+  background-color: #F8FAFA;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(4, 68, 57, 0.08);
+}
+
+.btn-secondary:active:not(:disabled),
+.btn-outline:active:not(:disabled) {
+  background-color: #EBF3F1;
+  transform: translateY(1px);
+}
+
+/* 3. Accent Orange Button */
+.btn-accent {
+  background-color: var(--color-accent, #F96815);
+  color: #FFFFFF;
+  border-color: var(--color-accent, #F96815);
+  box-shadow: 0 8px 20px rgba(249, 104, 21, 0.24);
+}
+
+.btn-accent:hover:not(:disabled) {
+  background-color: var(--color-accent-hover, #e05609);
+  border-color: var(--color-accent-hover, #e05609);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(249, 104, 21, 0.32);
+}
+
+.btn-accent:focus-visible {
+  outline-color: var(--color-accent, #F96815);
+}
+
+/* 4. WhatsApp Button */
+.btn-whatsapp {
+  background-color: var(--color-whatsapp, #25D366);
+  color: #FFFFFF;
+  border-color: var(--color-whatsapp, #25D366);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.28);
+}
+
+.btn-whatsapp:hover:not(:disabled) {
+  background-color: #20ba5a;
+  border-color: #20ba5a;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(37, 211, 102, 0.38);
+}
+
+.btn-whatsapp:focus-visible {
+  outline-color: #25D366;
+}
+
+/* ==========================================================================
+   Button Sizes
+   ========================================================================== */
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+.btn-md {
+  padding: 12px 24px;
+  font-size: 14px;
+}
+
+.btn-lg {
+  padding: 15px 32px;
+  font-size: 15px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* Spinner inside loading button */
+.ritam-spinner {
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
