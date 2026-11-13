@@ -143,7 +143,7 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting || isSubmittingRef.current) return;
+    if (!isFormValid || isSubmitting || isSubmittingRef.current) return;
 
     // Mark all touched and validate
     const nameErr = validateField('yourName', formData.yourName);
@@ -223,13 +223,13 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
     >
       <div style={styles.dialogCard} className="hover-lift">
         {/* Left Column: Forest Green with Title & Counselor Graphic matching PDF */}
-        <div style={styles.leftCol}>
-          <div style={styles.leftHeader}>
-            <h3 style={styles.leftTitle}>
-              Talk to Our <br />
-              <span style={styles.orangeHighlight}>Expert – Free</span>
+        <div style={styles.leftCol} className="talk-expert-modal-left">
+          <div style={styles.leftHeader} className="talk-expert-left-header">
+            <h3 style={{ ...styles.leftTitle, color: '#FFFFFF' }} className="talk-expert-left-title">
+              <span style={{ color: '#FFFFFF' }}>Talk to Our</span> <br />
+              <span style={styles.orangeHighlight} className="talk-expert-orange">Expert – Free</span>
             </h3>
-            <p style={styles.leftSubtitle}>
+            <p style={{ ...styles.leftSubtitle, color: '#FFFFFF' }} className="talk-expert-left-subtitle">
               Get personalized guidance for B.Tech admission, college selection, fees, and more.
             </p>
           </div>
@@ -442,12 +442,12 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
               {isSubmitting ? (
                 <>
                   <span style={styles.spinner} aria-hidden="true" />
-                  <span>Connecting with Expert...</span>
+                  <span style={{ color: '#FFFFFF' }}>Connecting with Expert...</span>
                 </>
               ) : (
                 <>
-                  <span style={styles.btnSendIcon} aria-hidden="true">➤</span>
-                  <span>Talk to an Expert – Free</span>
+                  <span style={{ ...styles.btnSendIcon, color: '#FFFFFF' }} aria-hidden="true">➤</span>
+                  <span style={{ color: '#FFFFFF' }}>Talk to an Expert – Free</span>
                 </>
               )}
             </button>
@@ -516,15 +516,17 @@ const styles = {
     lineHeight: '1.2',
     letterSpacing: '-0.5px',
     margin: 0,
+    color: '#FFFFFF',
   },
   orangeHighlight: {
     color: '#F96815',
   },
   leftSubtitle: {
     fontSize: '14px',
-    color: '#D1E5DF',
+    color: '#FFFFFF',
     lineHeight: '1.55',
     margin: 0,
+    opacity: 0.95,
   },
   counselorImgWrap: {
     display: 'flex',
@@ -669,12 +671,13 @@ const styles = {
     backgroundColor: '#F96815',
     boxShadow: '0 6px 18px rgba(249, 104, 21, 0.35)',
     cursor: 'pointer',
+    opacity: 1,
   },
   submitBtnDisabled: {
     backgroundColor: '#FCA574',
-    opacity: 0.6,
-    cursor: 'not-allowed',
     boxShadow: 'none',
+    cursor: 'not-allowed',
+    opacity: 0.65,
   },
   btnSendIcon: {
     fontSize: '14px',

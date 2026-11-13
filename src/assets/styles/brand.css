@@ -40,6 +40,11 @@
   --color-error: #EF4444;
   --color-error-bg: #FEF2F2;
 
+  /* Layout & Spacing System */
+  --space-container-max: 1240px;
+  --space-container-padding: clamp(16px, 3vw, 24px);
+  --space-section-gap: 80px;
+
   /* Typography */
   --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
@@ -270,4 +275,84 @@ select {
     opacity: 1 !important;
     transform: none !important;
   }
+
+  .nav-text-stretch,
+  .nav-subtext-reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* ==========================================================================
+   Snappy Text-Stretch Entrance Animation for Route Navigation
+   ========================================================================== */
+@keyframes textStretchEntrance {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.95) translateY(8px);
+    letter-spacing: -0.03em;
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 1;
+    transform: scaleX(1.008) translateY(0);
+    letter-spacing: normal;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1) translateY(0);
+    letter-spacing: normal;
+    filter: blur(0);
+  }
+}
+
+@keyframes textSubtextEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-text-stretch {
+  animation: textStretchEntrance 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: left center;
+  will-change: transform, opacity;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.nav-subtext-reveal {
+  animation: textSubtextEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   Talk to Expert Modal Overrides (Exact Pure White per Figma Design)
+   ========================================================================== */
+.talk-expert-modal-left,
+.talk-expert-modal-left h3,
+.talk-expert-modal-left h3 span,
+.talk-expert-left-title,
+.talk-expert-left-title span:first-child,
+.talk-expert-left-header h3,
+.talk-expert-left-header h3 span:first-child {
+  color: #FFFFFF !important;
+}
+
+.talk-expert-modal-left p,
+.talk-expert-left-subtitle,
+.talk-expert-left-header p {
+  color: #FFFFFF !important;
+  opacity: 0.95 !important;
+}
+
+.talk-expert-orange {
+  color: #F96815 !important;
 }

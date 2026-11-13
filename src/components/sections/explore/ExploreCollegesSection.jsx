@@ -65,86 +65,115 @@ export default function ExploreCollegesSection() {
           padding: 0;
         }
         .explore-hero-container {
-          max-width: 1440px;
+          max-width: 100%;
+          width: 100%;
           margin: 0 auto;
-          display: flex;
+          display: grid;
+          grid-template-columns: minmax(320px, 490px) 1fr;
+          gap: 36px;
           align-items: flex-end;
-          justify-content: space-between;
-          padding: 0 0 0 clamp(24px, 5vw, 64px);
+          padding: 0 24px;
+          padding: 0 0 0 36px;
           position: relative;
           box-sizing: border-box;
-          min-height: 440px;
+          min-height: 460px;
+          min-height: 480px;
         }
         .explore-hero-text {
-          max-width: 520px;
-          padding-top: 60px;
-          padding-bottom: 55px;
-          padding-right: 24px;
-          flex-shrink: 0;
-          z-index: 2;
-          position: relative;
+          max-width: 480px;
+          padding-top: 70px;
+          padding-bottom: 60px;
+          padding-top: 72px;
+          padding-bottom: 64px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
           box-sizing: border-box;
+          z-index: 2;
         }
         .explore-hero-img-col {
-          flex: 1;
           display: flex;
           justify-content: flex-end;
           align-items: flex-end;
           min-width: 0;
           line-height: 0;
-          z-index: 1;
-          position: relative;
-          overflow: hidden;
-          margin: 0;
+          height: 100%;
+          box-sizing: border-box;
         }
         .explore-hero-img {
-          width: auto;
-          height: clamp(300px, 28vw, 440px);
-          max-height: 440px;
-          max-width: 100%;
+          width: 100%;
+          height: auto;
+          max-height: 420px;
           object-fit: contain;
-          object-position: bottom right;
+          object-position: right bottom;
           display: block;
           vertical-align: bottom;
           margin: 0;
-          pointer-events: none;
+          position: absolute !important;
+          right: -25px !important;
+          bottom: 0 !important;
+          width: auto !important;
+          max-width: 60% !important;
         }
         @media (max-width: 992px) {
           .explore-hero-container {
-            flex-direction: column !important;
-            align-items: center !important;
+            grid-template-columns: 1fr !important;
+            gap: 0 !important;
             padding: 48px 24px 0 !important;
+            padding: 48px 0px 0px 36px !important;
             min-height: auto !important;
           }
           .explore-hero-text {
             max-width: 100% !important;
-            padding: 0 0 28px 0 !important;
+            padding: 0 0 24px 0 !important;
             text-align: left !important;
           }
           .explore-hero-img-col {
             width: 100% !important;
             justify-content: center !important;
+            align-items: flex-end !important;
           }
           .explore-hero-img {
-            width: 100% !important;
-            max-width: 600px !important;
-            height: auto !important;
+            max-width: 580px !important;
             max-height: 280px !important;
-            object-position: bottom center !important;
+            margin: 0 auto !important;
+            object-position: center bottom !important;
           }
           .explore-cards-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+          }
+          .explore-content-container {
+            padding: 50px 24px 65px !important;
+            padding: 50px 36px 65px !important;
+          }
+          .explore-quote-banner {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 24px !important;
+            padding: 24px !important;
+          }
+          .explore-contact-right-col {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 16px !important;
           }
         }
         @media (max-width: 640px) {
           .explore-hero-container {
             padding: 36px 16px 0 !important;
+            padding: 36px 0px 0px 20px !important;
+          }
+          .explore-content-container {
+            padding: 40px 16px 50px !important;
+            padding: 40px 20px 50px !important;
           }
           .explore-hero-img {
-            max-height: 200px !important;
+            max-height: 210px !important;
           }
           .explore-cards-grid {
             grid-template-columns: 1fr !important;
+            gap: 16px !important;
           }
         }
       `}</style>
@@ -158,12 +187,12 @@ export default function ExploreCollegesSection() {
               <span>Explore Colleges</span>
             </div>
 
-            <h2 style={styles.heroHeading}>
+            <h2 style={styles.heroHeading} className="nav-text-stretch">
               Explore Engineering <br />
               Colleges <span style={styles.orangeHighlight}>Across India</span>
             </h2>
 
-            <p style={styles.heroSubtitle}>
+            <p style={styles.heroSubtitle} className="nav-subtext-reveal">
               Discover opportunities, admission routes, fee insights and find the
               right college that fits your budget and career goals.
             </p>
@@ -184,7 +213,7 @@ export default function ExploreCollegesSection() {
       </div>
 
       {/* 2. Explore by State Section */}
-      <div style={styles.contentContainer}>
+      <div style={styles.contentContainer} className="explore-content-container">
         <div style={styles.statesHeader}>
           <h3 style={styles.statesTitle}>
             Explore by <span style={styles.orangeHighlight}>State</span>
@@ -240,7 +269,7 @@ export default function ExploreCollegesSection() {
         </div>
 
         {/* 4. Call Us Quote Banner matching PDF */}
-        <div style={styles.quoteBanner}>
+        <div style={styles.quoteBanner} className="explore-quote-banner">
           <div style={styles.quoteLeftCol}>
             <div style={styles.verticalBar} />
             <div style={styles.quoteTextWrap}>
@@ -254,13 +283,13 @@ export default function ExploreCollegesSection() {
             </div>
           </div>
 
-          <div style={styles.contactRightCol}>
+          <div style={styles.contactRightCol} className="explore-contact-right-col">
             {/* Call Us Item (Phone: +91 98765 43210) */}
             <div style={styles.contactItemRow}>
               <div style={styles.contactCircleIcon}>📞</div>
               <div style={styles.contactDetailGroup}>
                 <span style={styles.contactSmallLabel}>Call Us</span>
-                <a href="tel:+91 630 569 2643" style={styles.contactBigValue}>
+                <a href="tel:+919876543210" style={styles.contactBigValue}>
                   +91 98765 43210
                 </a>
               </div>
@@ -301,20 +330,33 @@ const styles = {
     overflow: 'hidden',
     boxSizing: 'border-box',
     position: 'relative',
+    minHeight: '460px',
   },
   heroContainer: {
-    maxWidth: '1440px',
+    maxWidth: '1240px',
+    width: '100%',
     margin: '0 auto',
     boxSizing: 'border-box',
     position: 'relative',
+    padding: '0 24px',
+    padding: '0 36px',
+    display: 'grid',
+    gridTemplateColumns: 'minmax(320px, 490px) 1fr',
+    gap: '36px',
+    alignItems: 'flex-end',
+    minHeight: '460px',
+    minHeight: '480px',
   },
   heroTextCol: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    paddingBottom: '55px',
-    paddingTop: '60px',
+    paddingBottom: '60px',
+    paddingTop: '70px',
+    paddingBottom: '64px',
+    paddingTop: '72px',
+    maxWidth: '480px',
     minWidth: 0,
     boxSizing: 'border-box',
     zIndex: 2,
@@ -327,10 +369,10 @@ const styles = {
     border: '1px solid rgba(255, 255, 255, 0.25)',
     padding: '6px 14px',
     borderRadius: '9999px',
-    fontSize: '12px',
-    fontWeight: '700',
+    fontSize: '11px',
+    fontWeight: '800',
     color: '#FFFFFF',
-    letterSpacing: '0.4px',
+    letterSpacing: '0.6px',
     marginBottom: '20px',
   },
   pillDot: {
@@ -338,7 +380,7 @@ const styles = {
     fontSize: '14px',
   },
   heroHeading: {
-    fontSize: 'clamp(30px, 3.8vw, 48px)',
+    fontSize: 'clamp(32px, 3.8vw, 48px)',
     fontWeight: '800',
     color: '#FFFFFF',
     lineHeight: '1.2',
@@ -365,24 +407,26 @@ const styles = {
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
     minWidth: 0,
-    boxSizing: 'border-box',
     lineHeight: 0,
+    height: '100%',
+    boxSizing: 'border-box',
   },
   heroImg: {
-    width: 'auto',
-    height: 'clamp(300px, 28vw, 440px)',
-    maxHeight: '440px',
-    maxWidth: '100%',
+    width: '100%',
+    height: 'auto',
+    maxHeight: '420px',
     objectFit: 'contain',
-    objectPosition: 'bottom right',
+    objectPosition: 'right bottom',
     display: 'block',
     verticalAlign: 'bottom',
     margin: 0,
   },
   contentContainer: {
     maxWidth: '1240px',
+    width: '100%',
     margin: '0 auto',
-    padding: '70px 24px 80px',
+    padding: '70px 24px 85px',
+    padding: '70px 36px 85px',
     boxSizing: 'border-box',
   },
   statesHeader: {
@@ -407,8 +451,8 @@ const styles = {
   cardsGrid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '20px',
-    marginBottom: '60px',
+    gap: '24px',
+    marginBottom: '70px',
   },
   portraitCard: {
     position: 'relative',
@@ -561,13 +605,13 @@ const styles = {
   },
   contactSmallLabel: {
     fontSize: '12px',
-    fontWeight: '700',
+    fontWeight: '600',
     color: '#6B7280',
     letterSpacing: '0.4px',
   },
   contactBigValue: {
     fontSize: '17px',
-    fontWeight: '800',
+    fontWeight: '500',
     color: '#111827',
     textDecoration: 'none',
   },

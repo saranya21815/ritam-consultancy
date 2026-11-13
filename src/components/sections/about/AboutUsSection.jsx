@@ -16,7 +16,7 @@ export default function AboutUsSection() {
               <span>ABOUT US</span>
             </div>
 
-            <h2 style={styles.heroHeading}>
+            <h2 style={styles.heroHeading} className="nav-text-stretch">
               About Ritam <br />
               <span style={styles.orangeHighlight}>Consultancy</span>
             </h2>
@@ -24,7 +24,7 @@ export default function AboutUsSection() {
             {/* Decorative short bar under heading matching PDF */}
             <div style={styles.accentBar} />
 
-            <p style={styles.description}>
+            <p style={styles.description} className="nav-subtext-reveal">
               We are an educational consultancy <strong>established in 2020</strong>, guiding
               students for engineering (B.Tech) admissions across India.
             </p>
@@ -453,7 +453,7 @@ const styles = {
   },
   contactValueBig: {
     fontSize: '20px',
-    fontWeight: '800',
+    fontWeight: '600',
     color: '#111827',
     textDecoration: 'none',
     letterSpacing: '-0.3px',

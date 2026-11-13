@@ -98,31 +98,133 @@ Need help evaluating specific colleges? Talk to Ritam Consultancy for genuine in
 
   return (
     <section id="blogs" className="blogs-section" style={styles.sectionWrapper}>
+      {/* Embedded CSS matching PDF layout, responsive alignment & zero horizontal scroll */}
+      <style>{`
+        .blogs-hero-banner {
+          background-color: #044439;
+          background-image: linear-gradient(101deg, #022A1F 0%, #047857 100%);
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+          box-sizing: border-box;
+          padding: 0;
+        }
+        .blogs-hero-container {
+          max-width: 1240px;
+          width: 100%;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: minmax(320px, 490px) 1fr;
+          gap: 36px;
+          align-items: flex-end;
+          padding: 0 36px;
+          position: relative;
+          box-sizing: border-box;
+          min-height: 480px;
+        }
+        .blogs-hero-text {
+          max-width: 480px;
+          padding-top: 72px;
+          padding-bottom: 64px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          box-sizing: border-box;
+          z-index: 2;
+        }
+        .blogs-hero-img-col {
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          min-width: 0;
+          line-height: 0;
+          height: 100%;
+          box-sizing: border-box;
+        }
+        .blogs-hero-img {
+          width: 100%;
+          height: auto;
+          max-height: 420px;
+          object-fit: contain;
+          object-position: right bottom;
+          display: block;
+          vertical-align: bottom;
+          margin: 0;
+        }
+        @media (max-width: 992px) {
+          .blogs-hero-container {
+            grid-template-columns: 1fr !important;
+            gap: 0 !important;
+            padding: 48px 36px 0 !important;
+            min-height: auto !important;
+          }
+          .blogs-hero-text {
+            max-width: 100% !important;
+            padding: 0 0 24px 0 !important;
+            text-align: left !important;
+          }
+          .blogs-hero-img-col {
+            width: 100% !important;
+            justify-content: center !important;
+            align-items: flex-end !important;
+          }
+          .blogs-hero-img {
+            max-width: 580px !important;
+            max-height: 280px !important;
+            margin: 0 auto !important;
+            object-position: center bottom !important;
+          }
+          .blogs-cards-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+          }
+          .blogs-content-container {
+            padding: 50px 36px 65px !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .blogs-hero-container {
+            padding: 36px 20px 0 !important;
+          }
+          .blogs-content-container {
+            padding: 40px 20px 50px !important;
+          }
+          .blogs-hero-img {
+            max-height: 210px !important;
+          }
+          .blogs-cards-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+        }
+      `}</style>
+
       {/* 1. Full-Width Deep Forest Green Hero Banner matching PDF */}
-      <div style={styles.heroBanner}>
-        <div style={styles.heroContainer}>
-          <div style={styles.heroTextCol}>
+      <div style={styles.heroBanner} className="blogs-hero-banner">
+        <div style={styles.heroContainer} className="blogs-hero-container">
+          <div style={styles.heroTextCol} className="blogs-hero-text">
             <div style={styles.pillBadge}>
               <span style={styles.pillDot}>•</span>
               <span>KNOWLEDGE HUB</span>
             </div>
 
-            <h2 style={styles.heroHeading}>
+            <h2 style={styles.heroHeading} className="nav-text-stretch">
               Expert Guides for Your <br />
               <span style={styles.orangeHighlight}>Engineering Journey</span>
             </h2>
 
-            <p style={styles.heroSubtitle}>
+            <p style={styles.heroSubtitle} className="nav-subtext-reveal">
               Practical tips, career insights and important information to help you make the
               right decisions about B.Tech.
             </p>
           </div>
 
-          <div style={styles.heroImgCol}>
+          <div style={styles.heroImgCol} className="blogs-hero-img-col">
             <img
               src={blogHeroImg}
               alt="Ritam Knowledge Hub - Engineering Guides"
               style={styles.heroImg}
+              className="blogs-hero-img"
               onError={(e) => {
                 e.currentTarget.src = '/assets/images/blogs/blogs-hero.png';
               }}
@@ -132,8 +234,8 @@ Need help evaluating specific colleges? Talk to Ritam Consultancy for genuine in
       </div>
 
       {/* 2. Blog Cards Container matching PDF */}
-      <div style={styles.contentContainer}>
-        <div style={styles.cardsGrid}>
+      <div style={styles.contentContainer} className="blogs-content-container">
+        <div style={styles.cardsGrid} className="blogs-cards-grid">
           {articles.map((article) => (
             <article key={article.id} style={styles.card} className="hover-lift">
               {/* Image with Category Pill Overlay on Top-Left matching PDF */}
@@ -250,22 +352,34 @@ const styles = {
     backgroundColor: '#044439',
     backgroundImage: 'linear-gradient(101deg, #022A1F 0%, #047857 100%)',
     width: '100%',
-    padding: '70px 24px 0',
+    padding: 0,
     overflow: 'hidden',
+    boxSizing: 'border-box',
+    position: 'relative',
+    minHeight: '480px',
   },
   heroContainer: {
     maxWidth: '1240px',
+    width: '100%',
     margin: '0 auto',
+    boxSizing: 'border-box',
+    position: 'relative',
+    padding: '0 36px',
     display: 'grid',
-    gridTemplateColumns: 'minmax(320px, 1.15fr) minmax(320px, 0.85fr)',
+    gridTemplateColumns: 'minmax(320px, 490px) 1fr',
     gap: '36px',
     alignItems: 'flex-end',
+    minHeight: '480px',
   },
   heroTextCol: {
+    maxWidth: '480px',
+    paddingTop: '72px',
+    paddingBottom: '64px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    paddingBottom: '60px',
+    boxSizing: 'border-box',
+    zIndex: 2,
   },
   pillBadge: {
     display: 'inline-flex',
@@ -279,47 +393,60 @@ const styles = {
     fontWeight: '800',
     color: '#FFFFFF',
     letterSpacing: '0.6px',
-    marginBottom: '22px',
+    marginBottom: '20px',
   },
   pillDot: {
     color: '#A3D8CD',
     fontSize: '14px',
   },
   heroHeading: {
-    fontSize: 'clamp(34px, 4.2vw, 52px)',
+    fontSize: 'clamp(32px, 3.8vw, 48px)',
     fontWeight: '800',
     color: '#FFFFFF',
-    lineHeight: '1.18',
-    letterSpacing: '-1px',
-    margin: '0 0 20px',
+    lineHeight: '1.2',
+    letterSpacing: '-0.8px',
+    margin: '0 0 18px',
+    overflowWrap: 'break-word',
+    wordBreak: 'normal',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
   orangeHighlight: {
     color: '#F96815',
   },
   heroSubtitle: {
-    fontSize: '16px',
+    fontSize: '15px',
     fontWeight: '500',
     fontFamily: "'Plus Jakarta Sans', sans-serif",
     color: '#D1E5DF',
     lineHeight: '1.65',
-    maxWidth: '520px',
+    maxWidth: '480px',
     margin: 0,
   },
   heroImgCol: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'flex-end',
+    minWidth: 0,
+    lineHeight: 0,
+    height: '100%',
+    boxSizing: 'border-box',
   },
   heroImg: {
     width: '100%',
-    maxHeight: '370px',
+    height: 'auto',
+    maxHeight: '420px',
     objectFit: 'contain',
+    objectPosition: 'right bottom',
     display: 'block',
+    verticalAlign: 'bottom',
+    margin: 0,
   },
   contentContainer: {
     maxWidth: '1240px',
+    width: '100%',
     margin: '0 auto',
-    padding: '70px 24px 85px',
+    padding: '70px 36px 85px',
+    boxSizing: 'border-box',
   },
   cardsGrid: {
     display: 'grid',

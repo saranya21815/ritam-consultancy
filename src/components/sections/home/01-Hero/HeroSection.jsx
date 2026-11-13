@@ -24,9 +24,51 @@ export default function HeroSection() {
 
   return (
     <section className="hero-section" style={styles.section}>
-      <div style={styles.container}>
+      <style>{`
+        @media (max-width: 992px) {
+          .hero-container {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+            align-items: center !important;
+          }
+          .hero-left-col {
+            align-items: center !important;
+            text-align: center !important;
+            padding-bottom: 20px !important;
+          }
+          .hero-left-col p {
+            margin: 0 auto !important;
+          }
+          .hero-badges-grid {
+            justify-content: center !important;
+          }
+          .hero-cta-group {
+            justify-content: center !important;
+          }
+          .hero-visual-container {
+            max-width: 480px !important;
+            margin: 0 auto !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .hero-visual-container {
+            max-width: 360px !important;
+          }
+          .hero-bottom-badge {
+            padding: 6px 10px !important;
+            bottom: 5% !important;
+            left: 0% !important;
+          }
+          .hero-top-badge {
+            padding: 6px 10px !important;
+            top: 4% !important;
+            right: 0% !important;
+          }
+        }
+      `}</style>
+      <div style={styles.container} className="hero-container">
         {/* Left Column: Heading, Copy, Badges, CTAs */}
-        <div style={styles.leftCol} className="reveal-on-scroll is-visible">
+        <div style={styles.leftCol} className="hero-left-col reveal-on-scroll is-visible">
           {/* Top Pill Badge */}
           <div style={styles.topBadge}>
             <span style={styles.badgeIcon}>🎓</span>
@@ -34,20 +76,20 @@ export default function HeroSection() {
           </div>
 
           {/* Main Headline with Dribbble Underline */}
-          <h1 style={styles.headline}>
+          <h1 style={styles.headline} className="nav-text-stretch">
             {headline.prefix}
             <br />
             <span style={styles.curlWrapper}>
               <span style={styles.highlight}>{headline.highlight}</span>
               {/* Dribbble Style Hand-drawn Underline Curve SVG */}
               <svg style={styles.curlSvg} viewBox="0 0 260 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 9C60 3 180 3 257 9" stroke="#F96815" strokeWidth="3.2" strokeLinecap="round"/>
+                <path d="M3 9C60 3 180 3 257 9" stroke="#F96815" strokeWidth="3.2" strokeLinecap="round" />
               </svg>
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p style={styles.subheadline}>{subheadline}</p>
+          <p style={styles.subheadline} className="nav-subtext-reveal">{subheadline}</p>
 
           {/* 4 Feature Badges Grid */}
           <div style={styles.badgesGrid}>
@@ -91,26 +133,44 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right Column: Hero Visual with Exact Backdrop Shapes & Trophy Card */}
+        {/* Right Column: Hero Visual with Exact Backdrop Shapes, Scaled Cutout & Badges matching Reference Image 1 */}
         <div style={styles.rightCol} className="reveal-on-scroll is-visible delay-1">
-          <div style={styles.visualContainer}>
-            {/* SVG Reproducing the exact layered shapes from the design */}
-            <svg style={styles.shapesBackdropSvg} viewBox="0 0 520 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* 1. Dark Forest Green Arch behind Boy's head (#135B4E) */}
-              <path d="M125 75C125 30 195 20 255 35C315 50 325 145 315 215C305 275 215 305 165 275C125 245 125 125 125 75Z" fill="#135B4E"/>
-              
-              {/* 2. Vibrant Orange Angled Wedge extending left (#F96815) */}
-              <path d="M35 165C15 195 40 235 85 225L265 155C300 140 315 180 295 215L195 320C160 355 100 340 70 300L35 165Z" fill="#F96815"/>
-              
+          <div style={styles.visualContainer} className="hero-visual-container">
+            {/* SVG Reproducing the exact layered shapes from Image 1 reference */}
+            <svg
+              style={styles.shapesBackdropSvg}
+              viewBox="0 0 580 520"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              {/* 1. Dark Forest Green Arch behind Boy's head & Center (#135B4E) */}
+              <path
+                d="M 65 140 C 60 50, 135 15, 210 20 C 285 25, 335 60, 345 115 C 355 175, 330 255, 280 285 C 225 315, 145 285, 105 235 C 75 195, 70 165, 65 140 Z"
+                fill="#135B4E"
+              />
+
+              {/* 2. Vibrant Orange Curved Shape protruding prominently to the left (#FD8340) */}
+              <path
+                d="M 10 220 C -2 175, 30 145, 80 148 C 130 150, 240 210, 285 205 C 315 200, 325 235, 305 270 C 275 325, 195 375, 135 365 C 80 355, 35 315, 18 265 L 10 220 Z"
+                fill="#FD8340"
+              />
+
               {/* 3. Muted Sage Green Shape on the Right (#CBD5C9) */}
-              <path d="M295 80C365 45 455 65 480 125C505 185 485 265 425 275C365 285 305 225 285 165C270 120 265 90 295 80Z" fill="#CBD5C9"/>
-              
-              {/* 4. Soft Warm Sand/Peach Shape on Far Right (#F7E6D7) */}
-              <path d="M435 135C490 115 525 160 530 235C535 310 490 385 445 395C405 405 395 345 400 275C405 205 395 150 435 135Z" fill="#F7E6D7"/>
+              <path
+                d="M 330 90 C 410 50, 510 65, 535 125 C 555 175, 545 250, 485 275 C 420 290, 345 245, 325 180 C 315 140, 310 105, 330 90 Z"
+                fill="#CBD5C9"
+              />
+
+              {/* 4. Soft Warm Sand/Peach Shape on Far Right (#FEECE2) */}
+              <path
+                d="M 450 115 C 520 95, 570 140, 578 200 C 585 265, 550 335, 495 348 C 450 358, 420 310, 428 245 C 435 185, 415 135, 450 115 Z"
+                fill="#FEECE2"
+              />
             </svg>
 
-            {/* Top Floating Trophy Card Matching Image Exactly */}
-            <div style={styles.floatingBadge}>
+            {/* Top-Right Floating Trophy Card Matching Image 1 Exactly */}
+            <div style={styles.floatingBadge} className="hero-top-badge hover-lift">
               <div style={styles.trophyIconBox}>🏆</div>
               <div style={styles.badgeTextGroup}>
                 <span style={styles.badgeHeading}>B.Tech Admissions</span>
@@ -118,22 +178,34 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Floating Stat Rating Badge Bottom */}
-            <div style={styles.floatingStatTag}>
-              <span style={{ color: '#F59E0B', fontSize: '16px' }}>⭐</span>
-              <div>
-                <span style={styles.statTitle}>4.9/5 Rating</span>
-                <span style={styles.statSub}>1,200+ Students Guided</span>
-              </div>
-            </div>
-
-            {/* Student Cutout Image from user folder */}
+            {/* Student Cutout Image Scaled & Positioned per Image 1 */}
             <img
               src={image.src}
               alt={image.alt}
               style={styles.studentsImg}
+              className="hero-students-img"
               loading="eager"
             />
+
+            {/* Bottom-Left Restored White Badge Matching Image 1 Exactly */}
+            <div style={styles.bottomLeftBadge} className="hero-bottom-badge hover-lift">
+              <div style={styles.badgeCheckCircle}>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M11.6666 3.5L5.24992 9.91667L2.33325 7"
+                    stroke="#044439"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <div style={styles.bottomBadgeTextCol}>
+                <span style={styles.bottomBadgeChoiceOf}>CHOICE OF</span>
+                <span style={styles.bottomBadgeNumber}>500+</span>
+                <span style={styles.bottomBadgeSubtitle}>Engineering Colleges</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -143,7 +215,7 @@ export default function HeroSection() {
 
 const styles = {
   section: {
-    padding: '65px 24px 95px', /* Generous top breathing room */
+    padding: '35px 24px 25px',
     backgroundColor: '#FFFFFF',
     position: 'relative',
     overflow: 'hidden',
@@ -152,15 +224,16 @@ const styles = {
     maxWidth: '1240px',
     margin: '0 auto',
     display: 'grid',
-    gridTemplateColumns: 'minmax(320px, 1.15fr) minmax(320px, 0.95fr)',
-    gap: '48px',
-    alignItems: 'center',
+    gridTemplateColumns: 'minmax(320px, 1.12fr) minmax(320px, 0.88fr)',
+    gap: '36px',
+    alignItems: 'flex-end',
   },
   leftCol: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    gap: '20px',
+    gap: '16px',
+    paddingBottom: '25px',
   },
   topBadge: {
     display: 'inline-flex',
@@ -284,16 +357,21 @@ const styles = {
   rightCol: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     position: 'relative',
+    height: '100%',
+    paddingBottom: '20px',
   },
   visualContainer: {
     position: 'relative',
     width: '100%',
-    maxWidth: '500px',
+    maxWidth: '560px',
+    aspectRatio: '580 / 520',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
+    margin: '0 auto',
+    lineHeight: 0,
   },
   shapesBackdropSvg: {
     position: 'absolute',
@@ -306,81 +384,113 @@ const styles = {
   },
   floatingBadge: {
     position: 'absolute',
-    top: '15px',
-    right: '5px',
-    backgroundColor: 'rgba(255, 255, 255, 0.98)',
-    backdropFilter: 'blur(12px)',
+    top: '5%',
+    right: '4%',
+    backgroundColor: '#FFFFFF',
     border: '1px solid rgba(234, 236, 240, 0.9)',
-    borderRadius: '18px',
-    padding: '10px 18px',
+    borderRadius: '16px',
+    padding: '8px 14px',
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
-    boxShadow: '0 16px 36px rgba(0, 0, 0, 0.12)',
+    gap: '10px',
+    boxShadow: '0 12px 28px rgba(0, 0, 0, 0.08)',
     zIndex: 5,
     animation: 'floatGentle 4.5s ease-in-out infinite',
   },
   trophyIconBox: {
-    width: '36px',
-    height: '36px',
-    borderRadius: '10px',
+    width: '32px',
+    height: '32px',
+    borderRadius: '9px',
     backgroundColor: '#FEF3C7',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '18px',
+    fontSize: '16px',
     flexShrink: 0,
   },
   badgeTextGroup: {
     display: 'flex',
     flexDirection: 'column',
-    lineHeight: 1.25,
+    lineHeight: 1.2,
   },
   badgeHeading: {
-    fontSize: '13px',
+    fontSize: '12px',
     fontWeight: '800',
     color: '#111827',
     letterSpacing: '-0.2px',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
   badgeSubtext: {
-    fontSize: '11px',
+    fontSize: '10px',
     color: '#6B7280',
     fontWeight: '500',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
-  floatingStatTag: {
+  studentsImg: {
     position: 'absolute',
-    bottom: '30px',
-    left: '-15px',
-    backgroundColor: 'rgba(255, 255, 255, 0.98)',
-    backdropFilter: 'blur(10px)',
-    border: '1px solid #EAECF0',
-    borderRadius: '14px',
+    bottom: 0,
+    left: '4.8%',
+    width: '90.5%',
+    height: '97%',
+    objectFit: 'contain',
+    objectPosition: 'bottom center',
+    zIndex: 3,
+    display: 'block',
+    verticalAlign: 'bottom',
+    margin: 0,
+    pointerEvents: 'none',
+  },
+  bottomLeftBadge: {
+    position: 'absolute',
+    bottom: '7%',
+    left: '2%',
+    backgroundColor: '#FFFFFF',
+    border: '1px solid #F3F4F6',
+    borderRadius: '16px',
     padding: '8px 14px',
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
-    boxShadow: '0 12px 26px rgba(0, 0, 0, 0.1)',
+    gap: '10px',
+    boxShadow: '0 12px 28px rgba(0, 0, 0, 0.08)',
     zIndex: 5,
+    animation: 'floatGentle 4s ease-in-out 1s infinite',
   },
-  statTitle: {
-    display: 'block',
-    fontSize: '11px',
+  badgeCheckCircle: {
+    width: '28px',
+    height: '28px',
+    borderRadius: '50%',
+    backgroundColor: '#DBF5EC',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  bottomBadgeTextCol: {
+    display: 'flex',
+    flexDirection: 'column',
+    lineHeight: 1.15,
+  },
+  bottomBadgeChoiceOf: {
+    fontSize: '8.5px',
     fontWeight: '700',
+    color: '#6B7280',
+    letterSpacing: '0.6px',
+    textTransform: 'uppercase',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
+  },
+  bottomBadgeNumber: {
+    fontSize: '16px',
+    fontWeight: '800',
     color: '#111827',
-    lineHeight: 1.2,
+    lineHeight: '1.1',
+    letterSpacing: '-0.3px',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
-  statSub: {
-    display: 'block',
+  bottomBadgeSubtitle: {
     fontSize: '10px',
-    fontWeight: '700',
-    color: '#059669',
-  },
-  studentsImg: {
-    width: '100%',
-    height: 'auto',
-    maxHeight: '500px',
-    objectFit: 'contain',
-    position: 'relative',
-    zIndex: 3,
+    fontWeight: '600',
+    color: '#4B5563',
+    lineHeight: '1.2',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
 };

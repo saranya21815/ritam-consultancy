@@ -68,7 +68,7 @@ export default function ExploreColleges() {
           </div>
         </div>
 
-        {/* Right Column: Grand, High-Impact Region Cards */}
+        {/* Right Column: Grand, High-Impact Region Cards matching Figma */}
         <div style={styles.rightGrid} className="reveal-on-scroll is-visible delay-1">
           {/* Top Wide Card: Andhra Pradesh & Telangana */}
           {wideCard && (
@@ -76,17 +76,19 @@ export default function ExploreColleges() {
               href="/explore-colleges"
               onClick={handleNavigateToExplore}
               style={styles.regionCardWide}
-              className="region-card-hover"
+              className="region-card-hover hover-lift"
+              aria-label="Explore Andhra Pradesh & Telangana Engineering Colleges"
             >
               <div style={styles.wideImgWrapper}>
                 <img src={wideCard.image} alt={wideCard.name} style={styles.cardImg} />
               </div>
               <div style={styles.cardInfo}>
                 <div style={styles.textGroup}>
-                  <span style={styles.regionTitle}>{wideCard.name}</span>
-                  <span style={styles.regionSubtag}>Hyderabad • Vijayawada • Visakhapatnam • 45+ Colleges</span>
+                  <span style={styles.regionTitleWide}>
+                    Andhra Pradesh &amp;<br />Telangana
+                  </span>
                 </div>
-                <div style={styles.arrowCircle}>➔</div>
+                <div style={styles.arrowCircle}>→</div>
               </div>
             </a>
           )}
@@ -99,7 +101,8 @@ export default function ExploreColleges() {
                 href="/explore-colleges"
                 onClick={handleNavigateToExplore}
                 style={styles.regionCard}
-                className="region-card-hover"
+                className="region-card-hover hover-lift"
+                aria-label={`Explore ${region.name} Engineering Colleges`}
               >
                 <div style={styles.thumbWrapper}>
                   <img src={region.image} alt={region.name} style={styles.cardImg} />
@@ -107,9 +110,8 @@ export default function ExploreColleges() {
                 <div style={styles.cardInfo}>
                   <div style={styles.textGroup}>
                     <span style={styles.regionTitle}>{region.name}</span>
-                    <span style={styles.regionSubtag}>Top Engineering Colleges</span>
                   </div>
-                  <div style={styles.arrowCircle}>➔</div>
+                  <div style={styles.arrowCircle}>→</div>
                 </div>
               </a>
             ))}
@@ -208,20 +210,20 @@ const styles = {
   regionCardWide: {
     display: 'flex',
     alignItems: 'center',
+    gap: '20px',
     backgroundColor: '#FFFFFF',
     border: '1.5px solid #EAECF0',
     borderRadius: '20px',
-    overflow: 'hidden',
-    minHeight: '120px',
+    padding: '14px 18px',
     textDecoration: 'none',
-    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
+    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.03)',
     transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
     cursor: 'pointer',
   },
   wideImgWrapper: {
-    width: '190px',
-    height: '100%',
-    minHeight: '120px',
+    width: '215px',
+    height: '115px',
+    borderRadius: '16px',
     flexShrink: 0,
     overflow: 'hidden',
   },
@@ -233,20 +235,20 @@ const styles = {
   regionCard: {
     display: 'flex',
     alignItems: 'center',
+    gap: '14px',
     backgroundColor: '#FFFFFF',
     border: '1.5px solid #EAECF0',
     borderRadius: '18px',
-    overflow: 'hidden',
-    minHeight: '104px',
+    padding: '12px 16px',
     textDecoration: 'none',
-    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.04)',
+    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.03)',
     transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
     cursor: 'pointer',
   },
   thumbWrapper: {
-    width: '120px',
-    height: '100%',
-    minHeight: '104px',
+    width: '115px',
+    height: '78px',
+    borderRadius: '12px',
     flexShrink: 0,
     overflow: 'hidden',
   },
@@ -254,44 +256,46 @@ const styles = {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+    display: 'block',
     transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
   },
   cardInfo: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '20px 24px',
     flex: 1,
   },
   textGroup: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '4px',
+    gap: '2px',
   },
-  regionTitle: {
-    fontSize: '16px',
+  regionTitleWide: {
+    fontSize: '17px',
     fontWeight: '800',
     color: '#111827',
+    lineHeight: '1.3',
     letterSpacing: '-0.3px',
   },
-  regionSubtag: {
-    fontSize: '12px',
-    fontWeight: '600',
-    color: '#6B7280',
+  regionTitle: {
+    fontSize: '15px',
+    fontWeight: '700',
+    color: '#111827',
+    lineHeight: '1.3',
   },
   arrowCircle: {
-    width: '38px',
-    height: '38px',
+    width: '36px',
+    height: '36px',
     borderRadius: '50%',
     backgroundColor: '#E8F5F1',
     color: '#044439',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '14px',
+    fontSize: '16px',
     fontWeight: '800',
     flexShrink: 0,
-    border: '1px solid #A3D8CD',
+    border: 'none',
     transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   },
 };

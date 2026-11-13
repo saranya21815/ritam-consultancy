@@ -16,7 +16,12 @@ export default function WhyChooseUs() {
 
           <h2 style={styles.heading}>
             {heading.prefix}
-            <span style={styles.highlight}>{heading.highlight}</span>
+            <span style={styles.curlWrapper}>
+              <span style={styles.highlight}>{heading.highlight}</span>
+              <svg style={styles.curlSvg} viewBox="0 0 260 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 8C65 2 190 2 256 8" stroke="#10B981" strokeWidth="3" strokeLinecap="round"/>
+              </svg>
+            </span>
           </h2>
 
           <p style={styles.subtext}>{subtext}</p>
@@ -79,16 +84,6 @@ export default function WhyChooseUs() {
             </div>
           ))}
         </div>
-
-        {/* Floating Choice Badge matching PDF */}
-        <div style={styles.choiceBadge} className="hover-lift reveal-on-scroll is-visible">
-          <div style={styles.choiceIconBox}>🎓</div>
-          <div style={styles.choiceTextGroup}>
-            <span style={styles.choiceLabel}>CHOICE OF</span>
-            <span style={styles.choiceNumber}>500+</span>
-            <span style={styles.choiceSub}>Engineering Colleges</span>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -96,11 +91,12 @@ export default function WhyChooseUs() {
 
 const styles = {
   section: {
-    padding: '85px 24px 95px',
-    backgroundColor: '#F4F8F7', /* Distinct section separation */
-    borderTop: '1px solid #E6ECE9',
-    borderBottom: '1px solid #E6ECE9',
+    padding: '85px 24px 90px',
+    background: 'radial-gradient(circle at 0% 35%, rgba(249, 104, 21, 0.08) 0%, rgba(254, 245, 240, 0.65) 28%, transparent 60%), radial-gradient(circle at 100% 38%, rgba(4, 120, 87, 0.08) 0%, rgba(238, 251, 244, 0.65) 28%, transparent 60%), #FFFFFF',
+    borderTop: '1px solid #EAECF0',
+    borderBottom: '1px solid #EAECF0',
     position: 'relative',
+    overflow: 'hidden',
   },
   container: {
     maxWidth: '1240px',
@@ -108,7 +104,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '50px',
+    gap: '46px',
   },
   header: {
     display: 'flex',
@@ -141,6 +137,21 @@ const styles = {
     color: '#111827',
     lineHeight: '1.2',
     letterSpacing: '-0.9px',
+  },
+  curlWrapper: {
+    position: 'relative',
+    display: 'inline-block',
+    whiteSpace: 'nowrap',
+    marginLeft: '6px',
+  },
+  curlSvg: {
+    position: 'absolute',
+    left: '0',
+    bottom: '-8px',
+    width: '100%',
+    height: '10px',
+    overflow: 'visible',
+    pointerEvents: 'none',
   },
   highlight: {
     color: '#F96815',
@@ -192,49 +203,5 @@ const styles = {
     fontWeight: '500',
     fontFamily: "'Plus Jakarta Sans', sans-serif",
     lineHeight: '1.6',
-  },
-  choiceBadge: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '12px',
-    backgroundColor: '#FFFFFF',
-    border: '1.5px solid #A3D8CD',
-    borderRadius: '9999px',
-    padding: '10px 24px',
-    boxShadow: '0 8px 24px rgba(4, 68, 57, 0.08)',
-    marginTop: '10px',
-  },
-  choiceIconBox: {
-    width: '38px',
-    height: '38px',
-    borderRadius: '50%',
-    backgroundColor: '#E8F5F1',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '18px',
-    flexShrink: 0,
-  },
-  choiceTextGroup: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px',
-    flexWrap: 'wrap',
-  },
-  choiceLabel: {
-    fontSize: '11px',
-    fontWeight: '700',
-    color: '#6B7280',
-    letterSpacing: '0.5px',
-  },
-  choiceNumber: {
-    fontSize: '18px',
-    fontWeight: '800',
-    color: '#044439',
-  },
-  choiceSub: {
-    fontSize: '13px',
-    fontWeight: '700',
-    color: '#111827',
   },
 };
