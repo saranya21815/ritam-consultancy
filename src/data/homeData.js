@@ -24,8 +24,8 @@ export const HOME_PAGE_DATA = {
   hero: {
     badge: "B.Tech Admissions | All Over India",
     headline: {
-      prefix: "Your Future Deserves ",
-      highlight: "the Right College.",
+      prefix: "Explore B.Tech Colleges ",
+      highlight: "in India",
     },
     subheadline:
       "Get expert guidance, compare top engineering colleges, and choose the right B.Tech college across India — based on your budget, preferences, and career goals.",

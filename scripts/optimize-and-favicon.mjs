@@ -12,7 +12,7 @@ const assetsDir = path.join(publicDir, 'assets');
 const iconsDir = path.join(assetsDir, 'icons');
 const imagesDir = path.join(assetsDir, 'images');
 
-const userUploadedLogo = 'C:/Users/ramch/.gemini/antigravity/brain/9a09c5f4-e399-4d93-821b-318768fd874c/.user_uploaded/media_1794222904985_5119b67d.png';
+const userUploadedLogo = path.join(imagesDir, 'logo', 'ritam-emblem.png');
 
 async function generateFavicons() {
   console.log('--- 1. GENERATING FAVICONS ---');
@@ -59,15 +59,18 @@ async function generateFavicons() {
   }
 
   // Generate favicon.ico using png-to-ico
-  const icoBuffer = await pngToIco(pngBuffersForIco);
+  const icoFn = pngToIco.default || pngToIco;
+  const icoBuffer = await icoFn(pngBuffersForIco);
   fs.writeFileSync(path.join(publicDir, 'favicon.ico'), icoBuffer);
   fs.writeFileSync(path.join(rootDir, 'favicon.ico'), icoBuffer);
   fs.writeFileSync(path.join(iconsDir, 'favicon.ico'), icoBuffer);
   console.log('Generated: favicon.ico (multi-resolution 16x16, 32x32, 48x48)');
 
-  // Also copy master emblem logo to public/assets/images/logo/ritam-emblem.png
-  fs.copyFileSync(userUploadedLogo, path.join(imagesDir, 'logo', 'ritam-emblem.png'));
-  console.log('Saved master emblem logo to public/assets/images/logo/ritam-emblem.png');
+  // Ensure master emblem logo exists in public/assets/images/logo/ritam-emblem.png
+  if (userUploadedLogo !== path.join(imagesDir, 'logo', 'ritam-emblem.png')) {
+    fs.copyFileSync(userUploadedLogo, path.join(imagesDir, 'logo', 'ritam-emblem.png'));
+    console.log('Saved master emblem logo to public/assets/images/logo/ritam-emblem.png');
+  }
 
   // Create site.webmanifest
   const manifest = {

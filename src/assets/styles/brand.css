@@ -24,6 +24,17 @@
 
   --color-whatsapp: #25D366;
 
+  /* Standardized Hero Theme Variables (Figma/PDF references from #012419 on left to #047A59 on right) */
+  --hero-bg-deep-forest: #012419;
+  --hero-bg-deep-forest-alt: #047A59;
+  --hero-bg-gradient: linear-gradient(105deg, #012419 0%, #023A2A 28%, #03573E 60%, #047A59 100%);
+  --hero-heading-white: #FFFFFF;
+  --hero-highlight-orange: #F96815;
+  --hero-desc-sage: #E2ECE9;
+  --hero-pill-bg: rgba(2, 42, 31, 0.65);
+  --hero-pill-border: rgba(163, 216, 205, 0.35);
+  --hero-pill-text: #A3D8CD;
+
   /* Neutrals */
   --color-text-title: #111827;
   --color-text-body: #4B5563;
@@ -72,9 +83,29 @@
 html {
   font-family: var(--font-family);
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
   color: var(--color-text-title);
   background-color: var(--color-bg-page);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Precise Section-to-Section Sticky Navbar Offset (80px - 95px Header Clearance) */
+section[id],
+div[id],
+#about-us,
+#about,
+#guidance-section,
+#enquiry-form-section,
+#explore-colleges-section,
+#why-choose-us,
+#zero-commission,
+#resources,
+#resources-section,
+#blogs,
+#blogs-section,
+#contact-us,
+#hero-section {
+  scroll-margin-top: 100px;
 }
 
 /* ==========================================================================
@@ -334,15 +365,12 @@ select {
 }
 
 /* ==========================================================================
-   Talk to Expert Modal Overrides (Exact Pure White per Figma Design)
+   Talk to Expert Modal Styling (Exact Colors per Figma/PDF Design Reference)
    ========================================================================== */
 .talk-expert-modal-left,
 .talk-expert-modal-left h3,
-.talk-expert-modal-left h3 span,
 .talk-expert-left-title,
-.talk-expert-left-title span:first-child,
-.talk-expert-left-header h3,
-.talk-expert-left-header h3 span:first-child {
+.talk-expert-left-header h3 {
   color: #FFFFFF !important;
 }
 

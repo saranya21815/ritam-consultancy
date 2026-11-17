@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import counselorImg from '../../../talk to expert/image 17.png';
+import counselorImg from '../../../talk to expert/image 17.webp';
 import { submitTalkToExpertLead } from '../../../services/expertSpreadsheetService';
 
 export default function TalkToExpertModal({ isOpen, onClose }) {
@@ -214,6 +214,7 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
   return (
     <div
       style={styles.backdrop}
+      className="talk-expert-modal-backdrop"
       onClick={(e) => {
         if (e.target === e.currentTarget && !isSubmitting) onClose();
       }}
@@ -221,13 +222,86 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
       aria-modal="true"
       aria-labelledby="talk-expert-heading"
     >
-      <div style={styles.dialogCard} className="hover-lift">
+      <style>{`
+        .talk-expert-modal-card {
+          display: grid;
+          grid-template-columns: minmax(280px, 0.85fr) minmax(320px, 1.15fr);
+          max-width: 820px;
+          width: 100%;
+          background-color: #FFFFFF;
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.35);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          max-height: 92vh;
+          animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @media (max-width: 768px) {
+          .talk-expert-modal-backdrop {
+            padding: 12px !important;
+            align-items: center !important;
+          }
+          .talk-expert-modal-card {
+            grid-template-columns: 1fr !important;
+            max-width: min(440px, calc(100% - 16px)) !important;
+            width: 100% !important;
+            max-height: 92vh !important;
+            overflow-y: auto !important;
+            border-radius: 20px !important;
+          }
+          .talk-expert-modal-left {
+            padding: 24px 20px 0 !important;
+            text-align: center !important;
+            min-height: auto !important;
+          }
+          .talk-expert-left-header {
+            align-items: center !important;
+            text-align: center !important;
+          }
+          .talk-expert-counselor-img {
+            max-width: 160px !important;
+          }
+          .talk-expert-modal-right {
+            padding: 24px 20px 24px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .talk-expert-modal-backdrop {
+            padding: 8px !important;
+          }
+          .talk-expert-modal-card {
+            max-width: 100% !important;
+            width: 100% !important;
+            max-height: 94vh !important;
+            border-radius: 16px !important;
+          }
+          .talk-expert-modal-left {
+            padding: 18px 14px 0 !important;
+          }
+          .talk-expert-counselor-img {
+            max-width: 130px !important;
+          }
+          .talk-expert-modal-right {
+            padding: 18px 14px 20px !important;
+          }
+          .talk-expert-input-wrap:focus-within {
+            border-color: #F96815 !important;
+            box-shadow: 0 0 0 3px rgba(249, 104, 21, 0.15) !important;
+          }
+        }
+        .talk-expert-input-wrap:focus-within {
+          border-color: #F96815 !important;
+          box-shadow: 0 0 0 3px rgba(249, 104, 21, 0.15) !important;
+        }
+      `}</style>
+      <div className="talk-expert-modal-card hover-lift">
         {/* Left Column: Forest Green with Title & Counselor Graphic matching PDF */}
         <div style={styles.leftCol} className="talk-expert-modal-left">
           <div style={styles.leftHeader} className="talk-expert-left-header">
             <h3 style={{ ...styles.leftTitle, color: '#FFFFFF' }} className="talk-expert-left-title">
               <span style={{ color: '#FFFFFF' }}>Talk to Our</span> <br />
-              <span style={styles.orangeHighlight} className="talk-expert-orange">Expert – Free</span>
+              <span style={{ color: '#FFFFFF' }}>Expert – </span>
+              <span style={{ color: '#F96815' }} className="talk-expert-orange">Free</span>
             </h3>
             <p style={{ ...styles.leftSubtitle, color: '#FFFFFF' }} className="talk-expert-left-subtitle">
               Get personalized guidance for B.Tech admission, college selection, fees, and more.
@@ -239,6 +313,7 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
               src={counselorImg}
               alt="Talk to Ritam Admission Expert"
               style={styles.counselorImg}
+              className="talk-expert-counselor-img"
               onError={(e) => {
                 e.currentTarget.src = '/assets/images/expert/expert-counselor.png';
               }}
@@ -247,7 +322,7 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
         </div>
 
         {/* Right Column: White with 4 Form Fields matching PDF */}
-        <div style={styles.rightCol}>
+        <div style={styles.rightCol} className="talk-expert-modal-right">
           {/* Close button top right */}
           <button
             type="button"
@@ -293,6 +368,7 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
             {/* Field 1: Your Name */}
             <div style={styles.fieldGroup}>
               <div
+                className="talk-expert-input-wrap"
                 style={{
                   ...styles.inputContainer,
                   borderColor: touched.yourName && errors.yourName ? '#EF4444' : '#D1D5DB',
@@ -323,6 +399,7 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
             {/* Field 2: Mobile Number */}
             <div style={styles.fieldGroup}>
               <div
+                className="talk-expert-input-wrap"
                 style={{
                   ...styles.inputContainer,
                   borderColor: touched.mobileNumber && errors.mobileNumber ? '#EF4444' : '#D1D5DB',
@@ -356,6 +433,7 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
             {/* Field 3: Intermediate Group (MPC, BiPC, Other) */}
             <div style={styles.fieldGroup}>
               <div
+                className="talk-expert-input-wrap"
                 style={{
                   ...styles.inputContainer,
                   borderColor: touched.intermediateGroup && errors.intermediateGroup ? '#EF4444' : '#D1D5DB',
@@ -394,6 +472,7 @@ export default function TalkToExpertModal({ isOpen, onClose }) {
             {/* Field 4: Preferred Location (Andhra Pradesh, Telangana, Karnataka, Tamil Nadu, Kerala, North States) */}
             <div style={styles.fieldGroup}>
               <div
+                className="talk-expert-input-wrap"
                 style={{
                   ...styles.inputContainer,
                   borderColor: touched.preferredLocation && errors.preferredLocation ? '#EF4444' : '#D1D5DB',
@@ -495,7 +574,7 @@ const styles = {
     animation: 'scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   },
   leftCol: {
-    backgroundColor: '#0C483D',
+    backgroundColor: '#084032',
     padding: '40px 32px 0',
     display: 'flex',
     flexDirection: 'column',
@@ -533,7 +612,9 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'flex-end',
     marginTop: '16px',
+    position: 'relative',
     zIndex: 2,
+    lineHeight: 0,
   },
   counselorImg: {
     width: '100%',
@@ -541,6 +622,8 @@ const styles = {
     height: 'auto',
     display: 'block',
     objectFit: 'contain',
+    position: 'relative',
+    zIndex: 2,
   },
   rightCol: {
     backgroundColor: '#FFFFFF',

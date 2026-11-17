@@ -25,7 +25,7 @@ export default function Navbar() {
     { id: 'home', label: 'Home', path: '/' },
     { id: 'colleges', label: 'Explore Colleges', path: '/explore-colleges' },
     { id: 'blogs', label: 'Blogs', path: '/blogs' },
-    { id: 'resources', label: 'Resources', path: '#resources', isAnchor: true },
+    { id: 'resources', label: 'Resources', path: '/resources' },
     { id: 'about', label: 'About Us', path: '/about-us' },
   ];
 
@@ -33,7 +33,8 @@ export default function Navbar() {
   const getActiveId = () => {
     const current = location.pathname.toLowerCase().trim();
     if (current === '/explore-colleges') return 'colleges';
-    if (current === '/blogs') return 'blogs';
+    if (current === '/blogs' || current.startsWith('/blogs/')) return 'blogs';
+    if (current === '/resources') return 'resources';
     if (current === '/about-us') return 'about';
     return 'home';
   };
@@ -55,38 +56,6 @@ export default function Navbar() {
   const handleNavClick = (link, e) => {
     if (e) e.preventDefault();
     setMobileMenuOpen(false);
-
-    if (link.isAnchor) {
-      // Resources: stays on Home page and scrolls to #resources section
-      if (location.pathname === '/') {
-        const el = document.getElementById('resources');
-        if (el) {
-          const navHeight = 85;
-          const bodyRect = document.body.getBoundingClientRect().top;
-          const elementRect = el.getBoundingClientRect().top;
-          const elementPosition = elementRect - bodyRect;
-          const offsetPosition = elementPosition - navHeight;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
-      } else {
-        // Navigate to Home, then scroll down to resources
-        navigate('/');
-        setTimeout(() => {
-          const el = document.getElementById('resources');
-          if (el) {
-            const navHeight = 85;
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const elementRect = el.getBoundingClientRect().top;
-            const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition - navHeight;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-          }
-        }, 150);
-      }
-      return;
-    }
-
-    // Direct page navigation with clean URL
     navigate(link.path);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -120,12 +89,41 @@ export default function Navbar() {
           z-index: 1000 !important;
           background-color: #FFFFFF !important;
         }
+        .ritam-navbar-logo {
+          height: 56px !important;
+          width: auto !important;
+          object-fit: contain !important;
+          display: block !important;
+          transition: height 0.2s ease !important;
+        }
         @media (max-width: 992px) {
           .ritam-sticky-navbar nav[aria-label="Main Navigation"] {
             display: none !important;
           }
-          .ritam-sticky-navbar button[aria-label*="Navigation Menu"] {
-            display: block !important;
+          .ritam-navbar-hamburger {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+          .ritam-navbar-logo {
+            height: 44px !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .ritam-sticky-navbar {
+            padding: 10px 14px !important;
+          }
+          .ritam-navbar-logo {
+            height: 34px !important;
+          }
+          .ritam-nav-enquire-btn {
+            padding: 7px 12px !important;
+            font-size: 12.5px !important;
+            gap: 4px !important;
+            white-space: nowrap !important;
+          }
+          .ritam-nav-cta-wrapper {
+            gap: 8px !important;
           }
         }
       `}</style>
@@ -141,6 +139,7 @@ export default function Navbar() {
           <img
             src={logo}
             alt="Ritam Consultancy"
+            className="ritam-navbar-logo"
             style={styles.logoImage}
             onError={(e) => {
               e.currentTarget.style.display = 'none';
@@ -158,8 +157,11 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* 2. Center Pill-Capsule Navigation Bar */}
-        <nav style={styles.pillContainer} aria-label="Main Navigation">
+        {/* 2. Center Pill Navigation Bar */}
+        <nav
+          style={styles.pillContainer}
+          aria-label="Main Navigation"
+        >
           {navLinks.map((link) => {
             const isActive = activeId === link.id;
             return (
@@ -179,12 +181,12 @@ export default function Navbar() {
         </nav>
 
         {/* 3. Right CTA Button: Enquire Now › */}
-        <div style={styles.ctaWrapper}>
+        <div style={styles.ctaWrapper} className="ritam-nav-cta-wrapper">
           <button
             type="button"
             onClick={handleEnquireClick}
             style={styles.ctaButton}
-            className="hover-lift"
+            className="hover-lift ritam-nav-enquire-btn"
             aria-label="Enquire now for admission guidance"
           >
             <span>Enquire Now</span>
@@ -194,6 +196,7 @@ export default function Navbar() {
           {/* Mobile Hamburger Button */}
           <button
             style={styles.hamburgerBtn}
+            className="ritam-navbar-hamburger"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
             aria-expanded={mobileMenuOpen}
@@ -258,6 +261,8 @@ const styles = {
     justifyContent: 'space-between',
     width: '100%',
     boxSizing: 'border-box',
+    flexWrap: 'nowrap',
+    gap: '12px',
   },
   logoLink: {
     display: 'flex',
@@ -266,7 +271,7 @@ const styles = {
     cursor: 'pointer',
   },
   logoImage: {
-    height: '46px',
+    height: '56px',
     width: 'auto',
     objectFit: 'contain',
     display: 'block',
@@ -304,34 +309,35 @@ const styles = {
     color: '#6B7280',
     letterSpacing: '1px',
   },
-  // Pill Capsule Nav Container
+  // Pill Nav Links Container - Centered inside light-grey rounded capsule (#F3F5F7)
   pillContainer: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#F3F4F6',
+    backgroundColor: '#F3F5F7',
     borderRadius: '9999px',
     padding: '4px 6px',
-    gap: '2px',
+    gap: '4px',
     boxSizing: 'border-box',
   },
   pillLink: {
-    padding: '8px 18px',
+    padding: '8px 20px',
     borderRadius: '9999px',
     fontSize: '14.5px',
     textDecoration: 'none',
     cursor: 'pointer',
     transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
     whiteSpace: 'nowrap',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
   pillLinkActive: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FFFFFF', // Separate white rounded pill with subtle shadow
     color: '#044439',
     fontWeight: '700',
-    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.06)',
   },
   pillLinkInactive: {
     backgroundColor: 'transparent',
-    color: '#4B5563',
+    color: '#4B5563', // Inactive links displayed in dark grey without individual backgrounds
     fontWeight: '600',
   },
   ctaWrapper: {

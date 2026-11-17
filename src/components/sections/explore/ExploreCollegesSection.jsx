@@ -1,5 +1,5 @@
 import React from 'react';
-import exploreHeroImg from '../../../explorer images/image 11 (1).png';
+import exploreHeroImg from '../../../explorer images/image 11 (1).webp';
 
 export default function ExploreCollegesSection() {
   // WhatsApp guidance number exclusively for WhatsApp interactions
@@ -56,8 +56,8 @@ export default function ExploreCollegesSection() {
       {/* Embedded CSS matching PDF layout, responsive alignment & zero horizontal scroll */}
       <style>{`
         .explore-hero-banner {
-          background-color: #044439;
-          background-image: linear-gradient(101deg, #022A1F 0%, #047857 100%);
+          background-color: #012419 !important;
+          background-image: linear-gradient(105deg, #012419 0%, #023A2A 25%, #035B41 55%, #047A59 100%) !important;
           width: 100%;
           overflow: hidden;
           position: relative;
@@ -65,24 +65,20 @@ export default function ExploreCollegesSection() {
           padding: 0;
         }
         .explore-hero-container {
-          max-width: 100%;
+          max-width: 1360px;
           width: 100%;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: minmax(320px, 490px) 1fr;
-          gap: 36px;
+          grid-template-columns: 460px 1fr;
+          gap: 20px;
           align-items: flex-end;
-          padding: 0 24px;
-          padding: 0 0 0 36px;
+          padding: 0 36px;
           position: relative;
           box-sizing: border-box;
-          min-height: 460px;
           min-height: 480px;
         }
         .explore-hero-text {
-          max-width: 480px;
-          padding-top: 70px;
-          padding-bottom: 60px;
+          max-width: 460px;
           padding-top: 72px;
           padding-bottom: 64px;
           display: flex;
@@ -93,49 +89,57 @@ export default function ExploreCollegesSection() {
         }
         .explore-hero-img-col {
           display: flex;
-          justify-content: flex-end;
-          align-items: flex-end;
+          justify-content: flex-start !important;
+          align-items: flex-end !important;
           min-width: 0;
           line-height: 0;
           height: 100%;
           box-sizing: border-box;
+          overflow: visible;
         }
         .explore-hero-img {
-          width: 100%;
-          height: auto;
-          max-height: 420px;
-          object-fit: contain;
-          object-position: right bottom;
+          width: auto !important;
+          max-width: 950px !important;
+          height: 420px !important;
+          object-fit: contain !important;
+          object-position: left bottom !important;
           display: block;
           vertical-align: bottom;
           margin: 0;
-          position: absolute !important;
-          right: -25px !important;
+          position: relative !important;
           bottom: 0 !important;
-          width: auto !important;
-          max-width: 60% !important;
+        }
+        @media (min-width: 641px) {
+          .nowrap-desktop {
+            white-space: nowrap !important;
+          }
         }
         @media (max-width: 992px) {
           .explore-hero-container {
             grid-template-columns: 1fr !important;
-            gap: 0 !important;
+            gap: 16px !important;
             padding: 48px 24px 0 !important;
-            padding: 48px 0px 0px 36px !important;
             min-height: auto !important;
           }
           .explore-hero-text {
             max-width: 100% !important;
-            padding: 0 0 24px 0 !important;
+            padding: 0 0 16px 0 !important;
             text-align: left !important;
           }
           .explore-hero-img-col {
             width: 100% !important;
             justify-content: center !important;
             align-items: flex-end !important;
+            position: relative !important;
+            margin-top: 8px !important;
           }
           .explore-hero-img {
-            max-width: 580px !important;
-            max-height: 280px !important;
+            position: relative !important;
+            right: auto !important;
+            bottom: auto !important;
+            width: 100% !important;
+            max-width: 600px !important;
+            max-height: 340px !important;
             margin: 0 auto !important;
             object-position: center bottom !important;
           }
@@ -144,7 +148,6 @@ export default function ExploreCollegesSection() {
             gap: 20px !important;
           }
           .explore-content-container {
-            padding: 50px 24px 65px !important;
             padding: 50px 36px 65px !important;
           }
           .explore-quote-banner {
@@ -161,15 +164,13 @@ export default function ExploreCollegesSection() {
         }
         @media (max-width: 640px) {
           .explore-hero-container {
-            padding: 36px 16px 0 !important;
             padding: 36px 0px 0px 20px !important;
           }
           .explore-content-container {
-            padding: 40px 16px 50px !important;
             padding: 40px 20px 50px !important;
           }
           .explore-hero-img {
-            max-height: 210px !important;
+            max-height: 250px !important;
           }
           .explore-cards-grid {
             grid-template-columns: 1fr !important;
@@ -181,7 +182,7 @@ export default function ExploreCollegesSection() {
       {/* 1. Full-Width Deep Forest Green Hero Banner matching PDF */}
       <div style={styles.heroBanner} className="explore-hero-banner">
         <div style={styles.heroContainer} className="explore-hero-container">
-          <div style={styles.heroTextCol} className="explore-hero-text">
+          <div style={styles.heroTextCol} className="explore-hero-text reveal-on-scroll is-visible">
             <div style={styles.pillBadge}>
               <span style={styles.pillDot}>•</span>
               <span>Explore Colleges</span>
@@ -189,7 +190,9 @@ export default function ExploreCollegesSection() {
 
             <h2 style={styles.heroHeading} className="nav-text-stretch">
               Explore Engineering <br />
-              Colleges <span style={styles.orangeHighlight}>Across India</span>
+              <span className="nowrap-desktop">
+                Colleges <span style={styles.orangeHighlight}>Across India</span>
+              </span>
             </h2>
 
             <p style={styles.heroSubtitle} className="nav-subtext-reveal">
@@ -198,7 +201,7 @@ export default function ExploreCollegesSection() {
             </p>
           </div>
 
-          <div style={styles.heroImgCol} className="explore-hero-img-col">
+          <div style={styles.heroImgCol} className="explore-hero-img-col reveal-on-scroll is-visible delay-1">
             <img
               src={exploreHeroImg}
               alt="Explore Engineering Colleges Across India"
@@ -323,28 +326,26 @@ const styles = {
     width: '100%',
   },
   heroBanner: {
-    backgroundColor: '#044439',
-    backgroundImage: 'linear-gradient(101deg, #022A1F 0%, #047857 100%)',
+    backgroundColor: '#012419',
+    backgroundImage: 'linear-gradient(105deg, #012419 0%, #023A2A 25%, #035B41 55%, #047A59 100%)',
     width: '100%',
     padding: 0,
     overflow: 'hidden',
     boxSizing: 'border-box',
     position: 'relative',
-    minHeight: '460px',
+    minHeight: '480px',
   },
   heroContainer: {
-    maxWidth: '1240px',
+    maxWidth: '1360px',
     width: '100%',
     margin: '0 auto',
     boxSizing: 'border-box',
     position: 'relative',
-    padding: '0 24px',
     padding: '0 36px',
     display: 'grid',
-    gridTemplateColumns: 'minmax(320px, 490px) 1fr',
-    gap: '36px',
+    gridTemplateColumns: '460px 1fr',
+    gap: '20px',
     alignItems: 'flex-end',
-    minHeight: '460px',
     minHeight: '480px',
   },
   heroTextCol: {
@@ -352,11 +353,10 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    paddingBottom: '60px',
-    paddingTop: '70px',
-    paddingBottom: '64px',
     paddingTop: '72px',
-    maxWidth: '480px',
+    paddingBottom: '64px',
+    maxWidth: '460px',
+    width: '100%',
     minWidth: 0,
     boxSizing: 'border-box',
     zIndex: 2,
@@ -380,11 +380,11 @@ const styles = {
     fontSize: '14px',
   },
   heroHeading: {
-    fontSize: 'clamp(32px, 3.8vw, 48px)',
+    fontSize: 'clamp(28px, 3.2vw, 42px)',
     fontWeight: '800',
     color: '#FFFFFF',
-    lineHeight: '1.2',
-    letterSpacing: '-0.8px',
+    lineHeight: '1.25',
+    letterSpacing: '-0.5px',
     margin: '0 0 18px',
     overflowWrap: 'break-word',
     wordBreak: 'normal',
@@ -397,14 +397,14 @@ const styles = {
     fontSize: '15px',
     fontWeight: '500',
     fontFamily: "'Plus Jakarta Sans', sans-serif",
-    color: '#D1E5DF',
+    color: '#E2ECE9',
     lineHeight: '1.65',
     maxWidth: '480px',
     margin: 0,
   },
   heroImgCol: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     alignItems: 'flex-end',
     minWidth: 0,
     lineHeight: 0,
@@ -412,11 +412,11 @@ const styles = {
     boxSizing: 'border-box',
   },
   heroImg: {
-    width: '100%',
-    height: 'auto',
-    maxHeight: '420px',
+    width: 'auto',
+    maxWidth: '950px',
+    height: '420px',
     objectFit: 'contain',
-    objectPosition: 'right bottom',
+    objectPosition: 'left bottom',
     display: 'block',
     verticalAlign: 'bottom',
     margin: 0,
@@ -425,7 +425,6 @@ const styles = {
     maxWidth: '1240px',
     width: '100%',
     margin: '0 auto',
-    padding: '70px 24px 85px',
     padding: '70px 36px 85px',
     boxSizing: 'border-box',
   },
@@ -445,7 +444,7 @@ const styles = {
     fontWeight: '500',
     fontFamily: "'Plus Jakarta Sans', sans-serif",
     color: '#4B5563',
-    lineHeight: '1.6',
+    lineHeight: '1.35',
     margin: 0,
   },
   cardsGrid: {

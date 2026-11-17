@@ -26,9 +26,11 @@ export default function ExploreColleges() {
           </div>
 
           <h2 style={styles.heading}>
-            {heading.prefix}
+            <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>Explore B.Tech Colleges</span>
             <br />
-            <span style={styles.highlight}>{heading.highlight}</span>
+            <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+              <span style={styles.highlight}>{heading.highlight}</span>
+            </span>
           </h2>
 
           <p style={styles.subtext}>{subtext}</p>

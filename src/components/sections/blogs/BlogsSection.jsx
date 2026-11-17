@@ -1,108 +1,18 @@
-import React, { useState } from 'react';
-import blogHeroImg from '../../../blog images/image 16.png';
-import blogImg1 from '../../../blog images/image 13.jpg';
-import blogImg2 from '../../../blog images/image 14.jpg';
-import blogImg3 from '../../../blog images/image 15.jpg';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import blogHeroImg from '../../../blog images/image 16.webp';
+import { BLOG_ARTICLES } from '../../../data/blogArticlesData';
 
 export default function BlogsSection() {
-  const [selectedArticle, setSelectedArticle] = useState(null);
-
-  const articles = [
-    {
-      id: 'guide-1',
-      category: 'College Guide',
-      date: 'Jan 20, 2026',
-      readTime: '8 min read',
-      image: blogImg1,
-      fallbackImg: '/assets/images/blogs/blog-1.jpg',
-      title: 'How to Choose the Right Engineering College After Intermediate: A Complete Guide',
-      excerpt:
-        'A step-by-step guide to selecting the right engineering college based on academics, placements, facilities and your career goals.',
-      fullContent: `Choosing the right engineering college after intermediate (10+2) is one of the most important decisions for students and parents.
-
-1. Accreditation & Recognition: Check NBA and NAAC grades (preferably A+ or A++). Autonomous institutions often have more updated curricula.
-2. Verified Placement Records: Look at the median salary rather than just highest packages. Verify which core engineering vs. IT companies recruit regularly.
-3. Faculty Qualifications & Labs: Experienced PhD professors and modern laboratory equipment ensure strong practical foundational engineering.
-4. Total Cost of Education: Factor in tuition fees, examination fees, hostel, mess, and transportation costs without hidden surprises.
-5. Campus Culture & Safety: Prioritize colleges with active anti-ragging committees, mentorship programs, and strong alumni networks.
-
-Ritam Consultancy provides unbiased, data-backed guidance to compare college options tailored to your rank and budget.`,
-    },
-    {
-      id: 'guide-2',
-      category: 'Career & Branches',
-      date: 'Jan 18, 2027',
-      readTime: '9 min read',
-      image: blogImg2,
-      fallbackImg: '/assets/images/blogs/blog-2.jpg',
-      title: 'Which B.Tech Branch Should You Choose? Courses, Career Opportunities & Future Scope',
-      excerpt:
-        'Explore popular B.Tech branches, their course highlights, career opportunities, and future scope to find the best fit for your interests and goals.',
-      fullContent: `Engineering offers diverse specializations. Here is how to choose the right branch based on your aptitude and market trends:
-
-- Computer Science & Engineering (CSE) / IT: High demand in software, cloud computing, AI/ML, and cybersecurity. Excellent for problem solvers and coders.
-- Electronics & Communication (ECE): Versatile foundation spanning hardware systems, embedded engineering, VLSI design, telecom, and IoT.
-- Electrical & Electronics (EEE): Core power systems, electric vehicles (EV), renewable green energy, and industrial automation.
-- Mechanical & Civil Engineering: Essential nation-building domains with sustained opportunities in manufacturing, aerospace, robotics, and smart infrastructure.
-
-Always prioritize personal curiosity and natural strengths over temporary hype. Our counselors help align your interests with long-term career growth.`,
-    },
-    {
-      id: 'guide-3',
-      category: 'Student Checklist',
-      date: 'Jan 15, 2026',
-      readTime: '7 min read',
-      image: blogImg3,
-      fallbackImg: '/assets/images/blogs/blog-3.jpg',
-      title: '10 Things Every Student Must Check Before Joining an Engineering College',
-      excerpt:
-        'A practical checklist covering key factors like accreditation, placements, fees, hostel, infrastructure and more, to make a well-informed decision.',
-      fullContent: `Before locking your choice in counseling or taking admission, run through this 10-point checklist:
-
-1. Government Approval: AICTE recognition and UGC status.
-2. Verified Cutoff Trends: Previous year opening and closing ranks for your category.
-3. Genuine Placement Percentage: Number of eligible students placed in core vs bulk IT companies.
-4. Transparent Fee Structure: Written breakdown of tuition, library, lab, uniform, and hostel deposits.
-5. Hostel & Food Hygiene: On-campus vs off-campus hostels, Wi-Fi reliability, and mess hygiene.
-6. Industry Internships: Active MoUs with reputed technology firms and research labs.
-7. Location & Accessibility: Distance from home, proximity to IT corridors, and connectivity.
-8. Coding Culture & Hackathons: Active student clubs (IEEE, ACM, robotics, coding communities).
-9. Student Diversity & Safe Campus: Strict anti-ragging measures and supportive student communities.
-10. Unbiased Third-Party Opinion: Speak to current students or verified counselors rather than promotional agents.
-
-Need help evaluating specific colleges? Talk to Ritam Consultancy for genuine insights with zero commission.`,
-    },
-  ];
-
-  const handleOpenArticle = (art, e) => {
-    e.preventDefault();
-    setSelectedArticle(art);
-  };
-
-  const handleCloseArticle = () => {
-    setSelectedArticle(null);
-  };
-
-  const scrollToEnquiry = () => {
-    setSelectedArticle(null);
-    const el = document.getElementById('enquiry-form-section');
-    if (el) {
-      const navHeight = 85;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = el.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - navHeight;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
-  };
+  const articles = BLOG_ARTICLES;
 
   return (
     <section id="blogs" className="blogs-section" style={styles.sectionWrapper}>
       {/* Embedded CSS matching PDF layout, responsive alignment & zero horizontal scroll */}
       <style>{`
         .blogs-hero-banner {
-          background-color: #044439;
-          background-image: linear-gradient(101deg, #022A1F 0%, #047857 100%);
+          background-color: #012419 !important;
+          background-image: linear-gradient(105deg, #012419 0%, #023A2A 25%, #035B41 55%, #047A59 100%) !important;
           width: 100%;
           overflow: hidden;
           position: relative;
@@ -151,16 +61,21 @@ Need help evaluating specific colleges? Talk to Ritam Consultancy for genuine in
           vertical-align: bottom;
           margin: 0;
         }
+        @media (min-width: 641px) {
+          .nowrap-desktop {
+            white-space: nowrap !important;
+          }
+        }
         @media (max-width: 992px) {
           .blogs-hero-container {
             grid-template-columns: 1fr !important;
-            gap: 0 !important;
+            gap: 16px !important;
             padding: 48px 36px 0 !important;
             min-height: auto !important;
           }
           .blogs-hero-text {
             max-width: 100% !important;
-            padding: 0 0 24px 0 !important;
+            padding: 0 0 16px 0 !important;
             text-align: left !important;
           }
           .blogs-hero-img-col {
@@ -169,7 +84,7 @@ Need help evaluating specific colleges? Talk to Ritam Consultancy for genuine in
             align-items: flex-end !important;
           }
           .blogs-hero-img {
-            max-width: 580px !important;
+            max-width: 540px !important;
             max-height: 280px !important;
             margin: 0 auto !important;
             object-position: center bottom !important;
@@ -202,7 +117,7 @@ Need help evaluating specific colleges? Talk to Ritam Consultancy for genuine in
       {/* 1. Full-Width Deep Forest Green Hero Banner matching PDF */}
       <div style={styles.heroBanner} className="blogs-hero-banner">
         <div style={styles.heroContainer} className="blogs-hero-container">
-          <div style={styles.heroTextCol} className="blogs-hero-text">
+          <div style={styles.heroTextCol} className="blogs-hero-text reveal-on-scroll is-visible">
             <div style={styles.pillBadge}>
               <span style={styles.pillDot}>•</span>
               <span>KNOWLEDGE HUB</span>
@@ -210,7 +125,9 @@ Need help evaluating specific colleges? Talk to Ritam Consultancy for genuine in
 
             <h2 style={styles.heroHeading} className="nav-text-stretch">
               Expert Guides for Your <br />
-              <span style={styles.orangeHighlight}>Engineering Journey</span>
+              <span className="nowrap-desktop">
+                <span style={styles.orangeHighlight}>Engineering Journey</span>
+              </span>
             </h2>
 
             <p style={styles.heroSubtitle} className="nav-subtext-reveal">
@@ -219,7 +136,7 @@ Need help evaluating specific colleges? Talk to Ritam Consultancy for genuine in
             </p>
           </div>
 
-          <div style={styles.heroImgCol} className="blogs-hero-img-col">
+          <div style={styles.heroImgCol} className="blogs-hero-img-col reveal-on-scroll is-visible delay-1">
             <img
               src={blogHeroImg}
               alt="Ritam Knowledge Hub - Engineering Guides"
@@ -265,80 +182,28 @@ Need help evaluating specific colleges? Talk to Ritam Consultancy for genuine in
                   </div>
                 </div>
 
-                <h3 style={styles.cardTitle}>{article.title}</h3>
+                <h3 style={styles.cardTitle}>
+                  <Link to={`/blogs/${article.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                    {article.title}
+                  </Link>
+                </h3>
 
                 <p style={styles.cardExcerpt}>{article.excerpt}</p>
 
                 <div style={styles.cardFooter}>
-                  <button
-                    type="button"
-                    onClick={(e) => handleOpenArticle(article, e)}
+                  <Link
+                    to={`/blogs/${article.slug}`}
                     style={styles.readArticleBtn}
                   >
                     <span>Read Article</span>
                     <span style={styles.diagonalArrow}>↗</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </article>
           ))}
         </div>
       </div>
-
-      {/* In-Page Article Modal Reader (Zero External Pages / Tabs) */}
-      {selectedArticle && (
-        <div style={styles.modalBackdrop} onClick={handleCloseArticle} role="dialog" aria-modal="true">
-          <div style={styles.modalCard} onClick={(e) => e.stopPropagation()}>
-            <div style={styles.modalHeader}>
-              <div style={styles.modalMeta}>
-                <span style={styles.categoryPillModal}>{selectedArticle.category}</span>
-                <span style={{ fontSize: '13px', color: '#6B7280' }}>
-                  {selectedArticle.date} • {selectedArticle.readTime}
-                </span>
-              </div>
-              <button
-                type="button"
-                onClick={handleCloseArticle}
-                style={styles.closeBtn}
-                aria-label="Close article"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div style={styles.modalContent}>
-              <img
-                src={selectedArticle.image}
-                alt={selectedArticle.title}
-                style={styles.modalImg}
-                onError={(e) => {
-                  e.currentTarget.src = selectedArticle.fallbackImg;
-                }}
-              />
-              <h2 style={styles.modalTitle}>{selectedArticle.title}</h2>
-              <div style={styles.modalBodyText}>
-                {selectedArticle.fullContent.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} style={styles.modalParagraph}>
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-
-              <div style={styles.modalCtaBox}>
-                <div style={styles.modalCtaText}>
-                  <strong>Need customized advice for your rank and budget?</strong>
-                  <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#4B5563' }}>
-                    Connect with our education counselors for personalized guidance.
-                  </p>
-                </div>
-                <button type="button" onClick={scrollToEnquiry} style={styles.modalCtaBtn}>
-                  Request College Suggestions
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
@@ -349,8 +214,8 @@ const styles = {
     position: 'relative',
   },
   heroBanner: {
-    backgroundColor: '#044439',
-    backgroundImage: 'linear-gradient(101deg, #022A1F 0%, #047857 100%)',
+    backgroundColor: '#012419',
+    backgroundImage: 'linear-gradient(105deg, #012419 0%, #023A2A 25%, #035B41 55%, #047A59 100%)',
     width: '100%',
     padding: 0,
     overflow: 'hidden',
@@ -366,13 +231,14 @@ const styles = {
     position: 'relative',
     padding: '0 36px',
     display: 'grid',
-    gridTemplateColumns: 'minmax(320px, 490px) 1fr',
+    gridTemplateColumns: 'minmax(320px, 560px) 1fr',
     gap: '36px',
     alignItems: 'flex-end',
     minHeight: '480px',
   },
   heroTextCol: {
-    maxWidth: '480px',
+    maxWidth: '560px',
+    width: '100%',
     paddingTop: '72px',
     paddingBottom: '64px',
     display: 'flex',
@@ -417,7 +283,7 @@ const styles = {
     fontSize: '15px',
     fontWeight: '500',
     fontFamily: "'Plus Jakarta Sans', sans-serif",
-    color: '#D1E5DF',
+    color: '#E2ECE9',
     lineHeight: '1.65',
     maxWidth: '480px',
     margin: 0,

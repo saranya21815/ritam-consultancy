@@ -32,9 +32,14 @@ export default function App() {
   useEffect(() => {
     const path = location.pathname || '/';
     const cleanKey = path.replace(/^\//, '').toLowerCase().trim();
-    const validSections = ['home', 'explore-colleges', 'blogs', 'about-us'];
-    const matched = validSections.find((s) => s === cleanKey) || 'home';
-    updateSectionMetadata(matched);
+    const validSections = ['home', 'explore-colleges', 'blogs', 'resources', 'about-us'];
+    const matched = validSections.find((s) => s === cleanKey);
+    if (matched) {
+      updateSectionMetadata(matched);
+    } else if (cleanKey === '' || cleanKey === '/') {
+      updateSectionMetadata('home');
+    }
+    // Inner blog articles manage their own dedicated article-level metadata in BlogArticlePage.jsx
 
     // Scroll to top on page change unless navigating to a hash anchor like #resources
     if (!location.hash) {

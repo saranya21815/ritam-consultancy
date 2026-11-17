@@ -75,16 +75,18 @@ export default function HeroSection() {
             <span style={styles.badgeText}>{badge}</span>
           </div>
 
-          {/* Main Headline with Dribbble Underline */}
+          {/* Main Headline strictly in two lines matching home.pdf */}
           <h1 style={styles.headline} className="nav-text-stretch">
-            {headline.prefix}
+            <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>Explore B.Tech Colleges</span>
             <br />
-            <span style={styles.curlWrapper}>
-              <span style={styles.highlight}>{headline.highlight}</span>
-              {/* Dribbble Style Hand-drawn Underline Curve SVG */}
-              <svg style={styles.curlSvg} viewBox="0 0 260 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 9C60 3 180 3 257 9" stroke="#F96815" strokeWidth="3.2" strokeLinecap="round" />
-              </svg>
+            <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+              <span style={styles.curlWrapper}>
+                <span style={styles.highlight}>in India</span>
+                {/* Dribbble Style Hand-drawn Underline Curve SVG */}
+                <svg style={styles.curlSvg} viewBox="0 0 260 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 9C60 3 180 3 257 9" stroke="#F96815" strokeWidth="3.2" strokeLinecap="round" />
+                </svg>
+              </span>
             </span>
           </h1>
 
